@@ -19,7 +19,9 @@ jobs:
           channelId: live
           projectId: chatapp-dc4bf
         env:
+          secrets: inherit
           VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+
 
       - name: Create dotenv file
         run: |
