@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: display
-        run: |             
-          cat .env | awk '$1=$1' FS= OFS=" "
       - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -21,5 +18,3 @@ jobs:
           firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CHATAPP_DC4BF }}
           channelId: live
           projectId: chatapp-dc4bf
-
-
