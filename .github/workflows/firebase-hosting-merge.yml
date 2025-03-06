@@ -26,13 +26,13 @@ jobs:
       - name: Create dotenv file
         run: |
           touch .env
-          echo VITE_API_KEY = $env.VITE_API_KEY >> .env
+          echo VITE_API_KEY = ${{ secrets.VITE_API_KEY }} >> .env
 
       - name: display
         run: |
           echo "$env.VITE_API_KEY" |  awk '$1=$1' FS= OFS=" "
           
           touch .env
-          echo VITE_API_KEY = $env.VITE_API_KEY >> .env
+          echo VITE_API_KEY = ${{ secrets.VITE_API_KEY }} >> .env
           
           cat .env | awk '$1=$1' FS= OFS=" "
