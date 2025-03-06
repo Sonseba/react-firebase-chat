@@ -1,0 +1,25 @@
+name: Run rspec
+
+on:
+  workflow_call:
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    env:
+      VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
+
+    steps:
+      - name: Create dotenv file
+        run: |
+          touch .env
+          echo VITE_API_KEY = $VITE_API_KEY >> .env
+
+      - name: display
+        run: |
+          echo "$GOOGLE_API_KEY" |  awk '$1=$1' FS= OFS=" "
+          
+          touch .env
+          echo GOOGLE_API_KEY = $GOOGLE_API_KEY >> .env
+          
+          cat .env | awk '$1=$1' FS= OFS=" "
