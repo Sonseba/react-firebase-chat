@@ -11,7 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
-      secrets: inherit
     steps:
       - name: Create dotenv file
         run: |
