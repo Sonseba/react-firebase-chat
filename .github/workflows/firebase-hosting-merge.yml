@@ -11,18 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npm ci && npm run build
-      - uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: ${{ secrets.GITHUB_TOKEN }}
-          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CHATAPP_DC4BF }}
-          channelId: live
-          projectId: chatapp-dc4bf
         env:
           secrets: inherit
           VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
-
-
       - name: Create dotenv file
         run: |
           touch .env
@@ -30,9 +21,18 @@ jobs:
 
       - name: display
         run: |
-          echo "$env.VITE_API_KEY" |  awk '$1=$1' FS= OFS=" "
+          echo "$VITE_API_KEY" |  awk '$1=$1' FS= OFS=" "
           
           touch .env
-          echo VITE_API_KEY = ${{ secrets.VITE_API_KEY }} >> .env
+          echo VITE_API_KEY = $VITE_API_KEY >> .env
           
           cat .env | awk '$1=$1' FS= OFS=" "
+      - run: npm ci && npm run build
+      - uses: FirebaseExtended/action-hosting-deploy@v0
+        with:
+          repoToken: ${{ secrets.GITHUB_TOKEN }}
+          firebaseServiceAccount: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_CHATAPP_DC4BF }}
+          channelId: live
+          projectId: chatapp-dc4bf
+
+
