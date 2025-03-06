@@ -18,15 +18,9 @@ jobs:
         run: |
           touch .env
           echo VITE_API_KEY = $VITE_API_KEY >> .env
-          echo length: ${#VITRE_API_Key}"
 
       - name: display
-        run: |
-          echo "$VITE_API_KEY" |  awk '$1=$1' FS= OFS=" "
-          
-          touch .env
-          echo VITE_API_KEY = $VITE_API_KEY >> .env
-          
+        run: |             
           cat .env | awk '$1=$1' FS= OFS=" "
       - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
