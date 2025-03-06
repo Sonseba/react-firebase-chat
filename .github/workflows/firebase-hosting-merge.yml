@@ -11,14 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        env:
-          secrets: inherit
-          VITE_API_KEY: ${{ secrets.VITE_API_KEY }}
-      - name: Create dotenv file
-        run: |
-          touch .env
-          echo VITE_API_KEY = $VITE_API_KEY >> .env
-
       - name: display
         run: |             
           cat .env | awk '$1=$1' FS= OFS=" "
